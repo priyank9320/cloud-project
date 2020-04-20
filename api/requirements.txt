@@ -1,0 +1,5 @@
+Flask
+autocorrect
+google-cloud-translate
+wordninja
+mysql-connector

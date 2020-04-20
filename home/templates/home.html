@@ -1,0 +1,57 @@
+
+<html>
+<head>
+<style>
+
+table { width:100%; }
+
+table,th,td {
+  border:1px solid black:
+  border-collapse:collapse;
+}
+
+th, td { padding:15px;
+          text-align:left;
+        }
+
+table#t01 tr:nth-child(even) {
+  background-color : #eee;
+}
+table#t01 tr:nth-child(odd) {
+  background-color : #fff;
+}
+table#t01 th{
+  background-color:black;
+  color:White;
+}
+
+
+
+</style>
+</head>
+
+
+
+<table id='t01'>
+    <thead>
+      <h2> Home page
+      </h2>
+    <tr>
+        <th>id</th>
+        <th>job</th>
+        <th>original_text</th>
+        <th>processed_text</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for col in value %}
+            <tr>
+                <td>{{col[0]}}</td>
+                <td>{{col[1]}}</td>
+                <td>{{col[2]}}</td>
+                <td>{{col[3]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</html>

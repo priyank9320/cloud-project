@@ -4,8 +4,8 @@ ENV DB_PORT ${DB_PORT}
 ENV DB_NAME ${DB_NAME}
 ENV DB_USER ${DB_USER}
 ENV DB_PASSWORD ${DB_PASSWORD}
-WORKDIR /home
-COPY . /home
+WORKDIR /flaskapp
+COPY . /flaskapp
 RUN pip install -r requirements.txt
-EXPOSE 5000
-CMD [ "python","home.py"]
+EXPOSE 8088
+CMD [ "python","app.py"]
