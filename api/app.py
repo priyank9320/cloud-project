@@ -17,7 +17,7 @@ import json
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./GoogleAPICredentials.json"
 
-db_connection = mysql.connector.connect(host=os.environ["DB_HOST"], database=os.environ["DB_NAME"], user=os.environ["DB_USER"], password=os.environ["DB_PASSWORD"])
+
 
 insert_query = """INSERT INTO cloud_project.preprocess (id, job, original_text, processed_text)
                            VALUES
@@ -37,10 +37,12 @@ def spell():
         spell = Speller()
         corrected_text = spell(original_text)
         query=insert_query.format(id,'spell',original_text,corrected_text)
+        db_connection = mysql.connector.connect(host=os.environ["DB_HOST"], database=os.environ["DB_NAME"], user=os.environ["DB_USER"], password=os.environ["DB_PASSWORD"])
         cursor = db_connection.cursor()
         cursor.execute(query)
         db_connection.commit()
         cursor.close()
+        db_connection.close()
 
         return '''<h3> the corrected text is: {}, (the id is: {} )</h3>'''.format(corrected_text,id)
 
@@ -65,11 +67,12 @@ def space():
         corrected_text = str(' '.join(split_text))
 
         query=insert_query.format(id,'space',original_text,corrected_text)
+        db_connection = mysql.connector.connect(host=os.environ["DB_HOST"], database=os.environ["DB_NAME"], user=os.environ["DB_USER"], password=os.environ["DB_PASSWORD"])
         cursor = db_connection.cursor()
         cursor.execute(query)
         db_connection.commit()
         cursor.close()
-
+        db_connection.close()
 
         return '''<h3> the corrected text is: {}, (the id is: {} )</h3>'''.format(corrected_text,id)
 
@@ -93,10 +96,12 @@ def translate_text():
         corrected_text = translator.translate(request.form.get('text'),target_language="en")['translatedText']
 
         query=insert_query.format(id,'translate',original_text,corrected_text)
+        db_connection = mysql.connector.connect(host=os.environ["DB_HOST"], database=os.environ["DB_NAME"], user=os.environ["DB_USER"], password=os.environ["DB_PASSWORD"])
         cursor = db_connection.cursor()
         cursor.execute(query)
         db_connection.commit()
         cursor.close()
+        db_connection.close()
 
         return '''<h3> the corrected text is: {}, (the id is: {})</h3>'''.format(corrected_text,id)
 
