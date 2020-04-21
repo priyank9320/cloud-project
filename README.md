@@ -12,7 +12,7 @@ The application consists of two containers : Flask-Home and Flask-Api , which ru
 
 The Flask-Home container can be used by just entering the url of the app as the route it is using is just "/" . The Home container connects to the RDS(Mysql) database and displays all the data in a table format.
 
-The Flask-Api container can be used by using the route "/api/<operation name>" . The operation name refers to the three text processing operations that can be done by this web app.
+The Flask-Api container can be used by using the route "/api/* " . The * refers to the three text processing operations that can be done by this cloud app.
 
 1. Spelling correction : The user can enter a text and also an id which can be used as tag to mark the text entered, and on submitting the text the app will correct all the spelling mistakes in it. The route for this functionality is "/api/spell" .
 2. Space correction : The user can enter text which can contain words without spaces, and the functionality will split the words and save the text with proper spaces. The route for this functionality is "/api/space" .
