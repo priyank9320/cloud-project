@@ -14,9 +14,9 @@ The Flask-Home container can be used by just entering the url of the app as the 
 
 The Flask-Api container can be used by using the route "/api/<operation name>" . The operation name refers to the three text processing operations that can be done by this web app.
 
-	1. Spelling correction : The user can enter a text and also an id which can be used as tag to mark the text entered, and on submitting the text the app will correct all the spelling mistakes in it. The route for this functionality is "/api/spell" .
- 	2. Space correction : The user can enter text which can contain words without spaces, and the functionality will split the words and save the text with proper spaces. The route for this functionality is "/api/space" .
- 	3. Translation : The user can enter text in any language and the functionality will translate the text into English by using the Google Translate API . The route for this functionality is "/api/translate" .
+1. Spelling correction : The user can enter a text and also an id which can be used as tag to mark the text entered, and on submitting the text the app will correct all the spelling mistakes in it. The route for this functionality is "/api/spell" .
+2. Space correction : The user can enter text which can contain words without spaces, and the functionality will split the words and save the text with proper spaces. The route for this functionality is "/api/space" .
+3. Translation : The user can enter text in any language and the functionality will translate the text into English by using the Google Translate API . The route for this functionality is "/api/translate" .
 
 Once the user performs any of the above mentioned actions the processed text gets saved in the database along with the original text and id appended with the date and time of the action performed. This data can be seen by visiting the home page, which uses the route "/" .
 
