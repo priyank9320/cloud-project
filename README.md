@@ -50,9 +50,14 @@ to login we first need to update the credentials, which can be found in the AWS 
 
 
 
+**Additional Detailed Description of the Services that I have used :** 
+
 So while developing this application i started exploring the various amazon aws services and so I got inspired to use them build something, so I have used amazon ECS , ECR , RDS, EC2 , ALB and CloudWatch to build this application (couldn’t use CloudWatch for autoscaling because of access error). 
+
 *Some of the services I couldn’t use because of the restricted nature of the account. Like Auto Scaling was not allowed for this account . I tried creating an amazon CloudWatch alarm and set autoscaling according to that but it showed me access error.*
+
 The Description of the various services that I have used is below (the architecture that I have implemented in the cloud can be scaled to incorporate multiple tasks on multiple EC2 instances if required) :
+
 **ECR** is Elastic Container Registry where you can easily store, manage and deploy your container images . It is integrated with amazon ECS . It is even encrypted , redundant and highly available. I have used ECR to upload the container images and then if I do any changes while building the application code , I can then just rebuild the image and login into ECR from the terminal and upload the image, and ECR will tag this new image as the latest one and keep the older images in the repository as history and untag them . This way the ECR is also acting as a version control.
 ![img](https://lh4.googleusercontent.com/-d82nzwpHKXmgo1UHezshchWeU61eVrHTZumuKuYdOSQqzZig8cjLfkDyo2HyGp0NIPubJ8zQOoRZHm2Cw4pev6XkK8bX7fQdevKAdit4pBJyINPRtWDGfFLr-XpuT6-V8hmC9tS)
 
