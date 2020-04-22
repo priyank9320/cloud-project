@@ -73,14 +73,35 @@ The Description of the various services that I have used is below (the architect
 
 
 
-The Amazon **ECS Container Agent** is a component of Amazon Elastic Container Service ([Amazon ECS](http://aws.amazon.com/ecs/)) responsible for managing containers and their state on behalf of Amazon ECS. The agent would receive requests from ECS to launch more containers and will perform this action .ECS uses this agent to communicate with the docker daemon on the EC2 instancesThe ECS agent gets created on its own and we don't have to do anything.
+The Amazon **ECS Container Agent** is a component of Amazon Elastic Container Service ([Amazon ECS](http://aws.amazon.com/ecs/)) 
 
-Once we have a cluster we can create **tasks** that run in the cluster. A Task basically contains the metadata (configurations) required to launch a single instance of the application container as a task on a machine.Tasks specify the Docker image for each container CPU and memory requirements for each containerData storageNetworking and port settingsWe can also mention the environment variables in a task
+1. responsible for managing containers and their state on behalf of Amazon ECS. 
+2. The agent would receive requests from ECS to launch more containers and will perform this action .
+3. ECS uses this agent to communicate with the docker daemon on the EC2 instances
+4. The ECS agent gets created on its own and we don't have to manually create it.
+
+Once we have a cluster we can create **tasks** that run in the cluster. A Task basically contains the metadata (configurations) required to launch a single instance of the application container as a task on a machine.
+
+1. Tasks specify the Docker image for each container 
+2. CPU and memory requirements for each container
+3. Data storage 
+4. Networking and port settings
+5. We can also mention the environment variables in a task
 
 I have given the database connection settings (username,password,etc) while creating the Task. This way I don’t have to expose the password in the code and I can freely upload the code in github.
+
 So now with these tools we can launch a container in an EC2 instance and with specific configurations mentioned in the Task . But still you will be manually running the tasks , and if the Task fails you will be manually restarting it. And you would also want to implement autoscaling.
-So, to resolve this we have the capability of creating a **Service**, Service can :Manage long -running workflows which need to be up at all timesAutomate the RUN-TASK process Actively monitor running tasksRestart tasks if they failIt also has a task placement strategy where you can specify where to place the copies of your task, so for example you can mention over there to spread the tasks across availability zones to make it fault tolerant or even out the load .
-![img](https://lh6.googleusercontent.com/q3BH5zKaL-ZDfysO_mGamJQDg3euT4mfCK8FFTwdqB7YKIYrrR3a_lFb88kWazi5ygUQ4XaNkghMOaOKCoM5qcp11DoCLYZrJACD5K0RYSUGjboPSnbJkIklaGqzW_MQctI_mlI4)
+
+So, to resolve this we have the capability of creating a **Service**, 
+
+A Service can :
+
+1. Manage long -running workflows which need to be up at all times
+2. Automate the RUN-TASK process 
+3. Actively monitor running tasks
+4. Restart tasks if they fail
+5. It also has a task placement strategy where you can specify where to place the copies of your task, so for example you can mention over there to spread the tasks across availability zones to make it fault tolerant or even out the load .
+   ![img](https://lh6.googleusercontent.com/q3BH5zKaL-ZDfysO_mGamJQDg3euT4mfCK8FFTwdqB7YKIYrrR3a_lFb88kWazi5ygUQ4XaNkghMOaOKCoM5qcp11DoCLYZrJACD5K0RYSUGjboPSnbJkIklaGqzW_MQctI_mlI4)
 
 ECS service keeps track of the tasks that are running and if for some reason if a task stops it will initiate a new task as replacement and will try to maintain the minimum count of tasks that we mentioned in the service. 
 If you update anything, the service will manage stopping the old tasks and launch new tasks.
@@ -90,7 +111,7 @@ SO what I understand from all this is that  **ECS is acting like a control plane
 
 I tried to implement autoscaling too, but due to the account restrictions I couldn’t, so below is the screenshot of the aws : ![img](https://lh5.googleusercontent.com/_AwFWs5jL00l-0jiUc4ZZEgheIkUhGIyxMlM7EtdyKFaKIOzdwjqNK_X4hNK1UUJjnnb1t0SbM-sIMtXkdMrrCXHBeWfd2MkCta-vUEy7Yzls-ZE0fl_4V8fKAn_qxm1ACoEGCqZ)
 
-I am also using aws RDS which is the Relational Database Service from amazon . I have installed a MYSQL server , and this runs in a separate EC2 instance.
+I am also using **aws RDS** which is the Relational Database Service from amazon . I have installed a MYSQL server , and this runs in a separate EC2 instance.
 
 
 
